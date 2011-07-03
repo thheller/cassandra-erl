@@ -22,6 +22,10 @@ I wanted to play with Cassandra from erlang and the default Thrift Bindings are 
 
     Columns = [{<<"col">>, <<"value">>}].
 
+## Docs
+
+Basic edoc at: http://thheller.github.com/cassandra-erl/
+
 ## TODO
 
 * SuperColumns
