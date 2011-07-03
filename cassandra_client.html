@@ -1,0 +1,183 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Module cassandra_client</title>
+<link rel="stylesheet" type="text/css" href="stylesheet.css" title="EDoc">
+</head>
+<body bgcolor="white">
+<div class="navbar"><a name="#navbar_top"></a><table width="100%" border="0" cellspacing="0" cellpadding="2" summary="navigation bar"><tr><td><a href="overview-summary.html" target="overviewFrame">Overview</a></td><td><a href="http://www.erlang.org/"><img src="erlang.png" align="right" border="0" alt="erlang logo"></a></td></tr></table></div>
+<hr>
+
+<h1>Module cassandra_client</h1>
+<ul class="index"><li><a href="#types">Data Types</a></li><li><a href="#index">Function Index</a></li><li><a href="#functions">Function Details</a></li></ul>
+
+<p><b>Behaviours:</b> <a href="gen_server.html"><tt>gen_server</tt></a>.</p>
+
+<h2><a name="types">Data Types</a></h2>
+
+<h3 class="typedecl"><a name="type-clevel">clevel()</a></h3>
+<p><tt>clevel() = one</tt></p>
+
+
+<h3 class="typedecl"><a name="type-client">client()</a></h3>
+<p><tt>client() = pid()</tt></p>
+
+
+<h3 class="typedecl"><a name="type-column">column()</a></h3>
+<p><tt>column() = {<a href="#type-column_name">column_name()</a>, <a href="#type-column_value">column_value()</a>, <a href="#type-ttl">ttl()</a>} | {<a href="#type-column_name">column_name()</a>, <a href="#type-column_value">column_value()</a>}</tt></p>
+
+
+<h3 class="typedecl"><a name="type-column_family">column_family()</a></h3>
+<p><tt>column_family() = iolist() | atom()</tt></p>
+
+
+<h3 class="typedecl"><a name="type-column_mutation">column_mutation()</a></h3>
+<p><tt>column_mutation() = {insert, [<a href="#type-column">column()</a>]} | {incr, [<a href="#type-column">column()</a>]}</tt></p>
+
+
+<h3 class="typedecl"><a name="type-column_name">column_name()</a></h3>
+<p><tt>column_name() = iolist()</tt></p>
+
+
+<h3 class="typedecl"><a name="type-column_value">column_value()</a></h3>
+<p><tt>column_value() = iolist()</tt></p>
+
+
+<h3 class="typedecl"><a name="type-connect_option">connect_option()</a></h3>
+<p><tt>connect_option() = {host, iolist()} | {port, non_neg_integer()} | {keyspace, iolist()}</tt></p>
+
+
+<h3 class="typedecl"><a name="type-mutation">mutation()</a></h3>
+<p><tt>mutation() = {<a href="#type-row">row()</a>, <a href="#type-column_family">column_family()</a>, [<a href="#type-column_mutation">column_mutation()</a>]}</tt></p>
+
+
+<h3 class="typedecl"><a name="type-row">row()</a></h3>
+<p><tt>row() = iolist()</tt></p>
+
+
+<h3 class="typedecl"><a name="type-slice_option">slice_option()</a></h3>
+<p><tt>slice_option() = {start, <a href="#type-column_name">column_name()</a>} | {finish, <a href="#type-column_name">column_name()</a>} | {count, non_neg_integer()} | reversed</tt></p>
+
+
+<h3 class="typedecl"><a name="type-ttl">ttl()</a></h3>
+<p><tt>ttl() = non_neg_integer()</tt></p>
+
+
+<h2><a name="index">Function Index</a></h2>
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#code_change-3">code_change/3</a></td><td></td></tr>
+<tr><td valign="top"><a href="#connect-0">connect/0</a></td><td></td></tr>
+<tr><td valign="top"><a href="#connect-1">connect/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#describe_version-1">describe_version/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#get_column-5">get_column/5</a></td><td></td></tr>
+<tr><td valign="top"><a href="#get_column_slice-5">get_column_slice/5</a></td><td></td></tr>
+<tr><td valign="top"><a href="#get_counter-5">get_counter/5</a></td><td></td></tr>
+<tr><td valign="top"><a href="#get_counter_slice-5">get_counter_slice/5</a></td><td></td></tr>
+<tr><td valign="top"><a href="#handle_call-3">handle_call/3</a></td><td></td></tr>
+<tr><td valign="top"><a href="#handle_cast-2">handle_cast/2</a></td><td></td></tr>
+<tr><td valign="top"><a href="#handle_info-2">handle_info/2</a></td><td></td></tr>
+<tr><td valign="top"><a href="#incr-6">incr/6</a></td><td></td></tr>
+<tr><td valign="top"><a href="#init-1">init/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#insert-5">insert/5</a></td><td></td></tr>
+<tr><td valign="top"><a href="#mutate-3">mutate/3</a></td><td></td></tr>
+<tr><td valign="top"><a href="#set_keyspace-2">set_keyspace/2</a></td><td></td></tr>
+<tr><td valign="top"><a href="#start_link-1">start_link/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#terminate-2">terminate/2</a></td><td></td></tr>
+</table>
+
+<h2><a name="functions">Function Details</a></h2>
+
+<h3 class="function"><a name="code_change-3">code_change/3</a></h3>
+<div class="spec">
+<p><tt>code_change(X1, X2, State) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="connect-0">connect/0</a></h3>
+<div class="spec">
+<p><tt>connect() -&gt; <a href="#type-client">client()</a></tt><br></p>
+</div>
+
+<h3 class="function"><a name="connect-1">connect/1</a></h3>
+<div class="spec">
+<p><tt>connect(Options::[<a href="cassandra_client.html#type-connect_option">cassandra_client:connect_option()</a>]) -&gt; <a href="#type-client">client()</a></tt><br></p>
+</div>
+
+<h3 class="function"><a name="describe_version-1">describe_version/1</a></h3>
+<div class="spec">
+<p><tt>describe_version(Client::<a href="#type-client">client()</a>) -&gt; {ok, binary()}</tt><br></p>
+</div>
+
+<h3 class="function"><a name="get_column-5">get_column/5</a></h3>
+<div class="spec">
+<p><tt>get_column(Client::<a href="#type-client">client()</a>, Row::<a href="#type-row">row()</a>, CF::<a href="#type-column_family">column_family()</a>, Name::<a href="#type-column_name">column_name()</a>, CL::<a href="#type-clevel">clevel()</a>) -&gt; not_found | {ok, <a href="#type-column">column()</a>}</tt><br></p>
+</div>
+
+<h3 class="function"><a name="get_column_slice-5">get_column_slice/5</a></h3>
+<div class="spec">
+<p><tt>get_column_slice(Client::<a href="#type-client">client()</a>, Row::<a href="#type-row">row()</a>, CF::<a href="#type-column_family">column_family()</a>, Options::[<a href="#type-slice_option">slice_option()</a>], CL::<a href="#type-clevel">clevel()</a>) -&gt; {ok, [<a href="#type-column">column()</a>]}</tt><br></p>
+</div>
+
+<h3 class="function"><a name="get_counter-5">get_counter/5</a></h3>
+<div class="spec">
+<p><tt>get_counter(Client::<a href="#type-client">client()</a>, Row::<a href="#type-row">row()</a>, CF::<a href="#type-column_family">column_family()</a>, Name::<a href="#type-column_name">column_name()</a>, CL::<a href="#type-clevel">clevel()</a>) -&gt; not_found | {ok, <a href="#type-column">column()</a>}</tt><br></p>
+</div>
+
+<h3 class="function"><a name="get_counter_slice-5">get_counter_slice/5</a></h3>
+<div class="spec">
+<p><tt>get_counter_slice(Client::<a href="#type-client">client()</a>, Row::<a href="#type-row">row()</a>, CF::<a href="#type-column_family">column_family()</a>, Options::[<a href="#type-slice_option">slice_option()</a>], CL::<a href="#type-clevel">clevel()</a>) -&gt; {ok, [<a href="#type-column">column()</a>]}</tt><br></p>
+</div>
+
+<h3 class="function"><a name="handle_call-3">handle_call/3</a></h3>
+<div class="spec">
+<p><tt>handle_call(Msg, From, State) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="handle_cast-2">handle_cast/2</a></h3>
+<div class="spec">
+<p><tt>handle_cast(Msg, State) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="handle_info-2">handle_info/2</a></h3>
+<div class="spec">
+<p><tt>handle_info(Msg, State) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="incr-6">incr/6</a></h3>
+<div class="spec">
+<p><tt>incr(Client::<a href="#type-client">client()</a>, Row::<a href="#type-row">row()</a>, CF::<a href="#type-column_family">column_family()</a>, Name::<a href="#type-column_name">column_name()</a>, Value::integer(), CL::<a href="#type-clevel">clevel()</a>) -&gt; ok</tt><br></p>
+</div>
+
+<h3 class="function"><a name="init-1">init/1</a></h3>
+<div class="spec">
+<p><tt>init(Options) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="insert-5">insert/5</a></h3>
+<div class="spec">
+<p><tt>insert(Client::<a href="#type-client">client()</a>, Row::<a href="#type-row">row()</a>, CF::<a href="#type-column_family">column_family()</a>, Column::<a href="#type-column">column()</a>, CL::<a href="#type-clevel">clevel()</a>) -&gt; ok</tt><br></p>
+</div>
+
+<h3 class="function"><a name="mutate-3">mutate/3</a></h3>
+<div class="spec">
+<p><tt>mutate(Client::<a href="#type-client">client()</a>, Mutations::[<a href="#type-mutation">mutation()</a>], CL::<a href="#type-clevel">clevel()</a>) -&gt; ok</tt><br></p>
+</div>
+
+<h3 class="function"><a name="set_keyspace-2">set_keyspace/2</a></h3>
+<div class="spec">
+<p><tt>set_keyspace(Client::<a href="#type-client">client()</a>, Name::iolist()) -&gt; ok</tt><br></p>
+</div>
+
+<h3 class="function"><a name="start_link-1">start_link/1</a></h3>
+<div class="spec">
+<p><tt>start_link(Options::[<a href="#type-connect_option">connect_option()</a>]) -&gt; {ok, pid()}</tt><br></p>
+</div>
+
+<h3 class="function"><a name="terminate-2">terminate/2</a></h3>
+<div class="spec">
+<p><tt>terminate(Reason, State) -&gt; any()</tt></p>
+</div>
+<hr>
+
+<div class="navbar"><a name="#navbar_bottom"></a><table width="100%" border="0" cellspacing="0" cellpadding="2" summary="navigation bar"><tr><td><a href="overview-summary.html" target="overviewFrame">Overview</a></td><td><a href="http://www.erlang.org/"><img src="erlang.png" align="right" border="0" alt="erlang logo"></a></td></tr></table></div>
+<p><i>Generated by EDoc, Jul 3 2011, 18:08:22.</i></p>
+</body>
+</html>

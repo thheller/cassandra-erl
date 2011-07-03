@@ -1,0 +1,4 @@
+{application,cassandra_client}.
+{packages,[]}.
+{modules,[cassandra_client,cassandra_client_util,cassandra_thrift,
+          cassandra_types]}.
