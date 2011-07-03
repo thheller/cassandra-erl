@@ -1,0 +1,12 @@
+{application, cassandra_client,
+ [
+  {description, ""},
+  {vsn, "1"},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib
+                 ]},
+  {mod, { cassandra_client_app, []}},
+  {env, []}
+ ]}.

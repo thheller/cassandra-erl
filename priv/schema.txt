@@ -1,0 +1,14 @@
+
+create keyspace metrics
+  with strategy_options=[{replication_factor:1}]
+  and placement_strategy = 'org.apache.cassandra.locator.SimpleStrategy';
+
+use metrics;
+
+create column family data
+  with comparator = BytesType;
+
+create column family counters
+  with comparator = BytesType
+  with default_validation_class = CounterColumnType;
+
